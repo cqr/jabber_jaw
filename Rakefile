@@ -5,19 +5,19 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "jabber_jaw"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{DSL for human message handling}
+    gem.description = %Q{JabberJaw is a Sinatra-inspired DSL for building a message handler with humans on the other end.}
     gem.email = "carhoden@gmail.com"
     gem.homepage = "http://github.com/chrisrhoden/jabber_jaw"
     gem.authors = ["chrisrhoden"]
-    gem.add_development_dependency "rspec", ">= 1.2.9"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.add_development_dependency "rspec", "1.2.9"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
 
+gem 'rspec', '1.2.9'
 require 'spec/rake/spectask'
 Spec::Rake::SpecTask.new(:spec) do |spec|
   spec.libs << 'lib' << 'spec'
