@@ -1,7 +1,0 @@
-= jabber_jaw
-
-oh hey, it's a dsl. more later.
-
-== Copyright
-
-Copyright (c) 2010 chrisrhoden. See LICENSE for details.
