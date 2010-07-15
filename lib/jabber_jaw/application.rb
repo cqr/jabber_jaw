@@ -40,11 +40,12 @@ module ::JabberJaw
         @threads ||= []
       end
       
-      def self.adapterize(adapter)
+      def adapterize(adapter)
         eval('JabberJaw::Adapters::'+adapter.to_s.split('_').map(&:capitalize).join(''))
       end
       
       def run!
+        connect :stdio if connections.empty?
         connections.each do |adapter, args, options|
           conn_name = options.delete(:as)
           args.push(options) unless options.empty?
@@ -64,7 +65,10 @@ module ::JabberJaw
       
       def handle(message, options = {})
         commands.each do |name, command|
-          command.handle(message, options) and return if command.handles?(message, options)
+          if command.handles?(message, options)
+            command.handle(message, options)
+            return true
+          end
         end
       end
       

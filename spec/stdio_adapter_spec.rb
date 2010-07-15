@@ -4,15 +4,18 @@ describe JabberJaw::Adapters::Stdio do
   
   it 'collects from standard input' do
     read, write = IO.pipe
-    adapter = nil
-    Thread.new { adapter = JabberJaw::Adapters::Stdio.new(read, write) }
-    Thread.new do
-      handler = mock('handler')
-      
-      adapter.listen(handler)
+    handler = mock('handler')
+    
+    Thread.new(read, write, handler) do |read, write, handler|
+      adapter = JabberJaw::Adapters::Stdio.new(read, write)
+      adapter.listen handler
+      adapter.run!
+    end
+    
+    Thread.new(handler) do |handler|
       handler.should_receive(:handle).once.with('message')
       write << 'message'
       write.close and read.close
-    end.join
+    end
   end
 end

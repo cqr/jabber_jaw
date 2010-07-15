@@ -11,6 +11,7 @@ begin
     gem.homepage = "http://github.com/chrisrhoden/jabber_jaw"
     gem.authors = ["chrisrhoden"]
     gem.add_development_dependency "rspec", "1.2.9"
+    gem.add_dependency "xmpp4r", "0.5"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{jabber_jaw}
-  s.version = "3.0.alpha.1"
+  s.version = "3.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["chrisrhoden"]
-  s.date = %q{2010-07-06}
+  s.date = %q{2010-07-14}
   s.description = %q{JabberJaw is a Sinatra-inspired DSL for building a message handler with humans on the other end.}
   s.email = %q{carhoden@gmail.com}
   s.extra_rdoc_files = [
@@ -23,9 +23,18 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "jabber_jaw.gemspec",
      "lib/jabber_jaw.rb",
+     "lib/jabber_jaw/adapter.rb",
+     "lib/jabber_jaw/adapters.rb",
+     "lib/jabber_jaw/adapters/stdio.rb",
+     "lib/jabber_jaw/application.rb",
+     "lib/jabber_jaw/command.rb",
+     "pkg/jabber_jaw-0.0.0.gem",
+     "spec/adapter_spec.rb",
      "spec/spec.opts",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "spec/stdio_adapter_spec.rb"
   ]
   s.homepage = %q{http://github.com/chrisrhoden/jabber_jaw}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -34,7 +43,8 @@ Gem::Specification.new do |s|
   s.summary = %q{DSL for human message handling}
   s.test_files = [
     "spec/adapter_spec.rb",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "spec/stdio_adapter_spec.rb"
   ]
 
   if s.respond_to? :specification_version then

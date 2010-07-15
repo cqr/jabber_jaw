@@ -23,7 +23,6 @@ module ::JabberJaw
     end
     
     def handle(message, opts = {})
-      puts 'handling' + message
       self.message_delivered = false
       @sender, @options, @message, @full_message = opts[:from], opts, message, message
       @message = @response[1] if @response.length == 2

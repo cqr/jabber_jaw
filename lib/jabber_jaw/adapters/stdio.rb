@@ -8,7 +8,7 @@ module ::JabberJaw
       end
       
       def send(message, opts = {})
-        @out << "#{opts[:to] + ': ' if opts[:to]}#{message}\r\n"
+        @out << "#{opts[:to].to_s + ': ' if opts[:to]}#{message}\r\n"
       end
       
       def run!
