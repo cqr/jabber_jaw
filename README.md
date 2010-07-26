@@ -95,6 +95,7 @@ Now, I know how to hook it up to multiple adapters(I think),
 and it requires a complete rewrite, so I'm calling this 3.0.
 Hopefully that explains the version.
 
-== Copyright
+Copyright
+---------
 
 Copyright (c) 2010 chrisrhoden. See LICENSE for details.

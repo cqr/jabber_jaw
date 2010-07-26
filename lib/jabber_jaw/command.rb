@@ -5,8 +5,9 @@ module ::JabberJaw
     attr_accessor :message_delivered
     
     def initialize(matcher = nil, config = {}, &block)
+      @name = matcher || 'default'
       matcher ||= /(.*)/
-      matcher = /^#{matcher} (.+)$/ if matcher.kind_of? String or matcher.kind_of? Symbol
+      matcher = /^#{matcher}#{config[:split]||' '}(.+)$/ if matcher.kind_of? String or matcher.kind_of? Symbol
       @matcher, @config, @block = matcher, config, block
       singleton_class.send(:define_method, :_execute, &block)
     end
@@ -25,7 +26,7 @@ module ::JabberJaw
     def handle(message, opts = {})
       self.message_delivered = false
       @sender, @options, @message, @full_message = opts[:from], opts, message, message
-      @message = @response[1] if @response.length == 2
+      @message = @response[1] if @response and @response.length == 2
       args = @response[1, _execute_arity] if _execute_arity >= 1
       @message, args = args, args[0].split(config[:split] || /\s/, _execute_arity) if args and args.length == 1 and _execute_arity >= 1
       args ||= []
@@ -53,6 +54,10 @@ module ::JabberJaw
     
     def message_delivered?
       message_delivered
+    end
+    
+    def to_s
+      @name.to_s + ' command'
     end
     
     private
