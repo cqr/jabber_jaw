@@ -39,14 +39,14 @@ before, the syntax still isn't nailed down yet. That said, you
 can use RegExps to match messages
 
     command /^send (.*) to (.*)$/ do |message, recipient|
-      send message, :to => recipient
+      send message, to: recipient
     end
     
 or you can use strings. You can automatically split your messages.
 
     # syntax for the command is `forward <recipient> <message>`
     command :forward do |recipient, message|
-      send message, :to => recipient
+      send message, to: recipient
     end
 
 There's a certain amount of sugar involved. If your block doesn't
@@ -65,9 +65,9 @@ Which is equivalent to
 
 or (even more verbose).
 
-    ...
-    send "Yes.", :to => sender
-    ...
+    command /^[aA]m I awesome\?$/ do
+      send "Yes.", to: sender
+    end
     
 There's a bunch more going in, and the code is likely to change
 rapidly until I hit a point where it has all the features I want.
